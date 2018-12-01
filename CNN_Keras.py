@@ -1,7 +1,6 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-# Import MNIST data
 from tensorflow.examples.tutorials.mnist import input_data
 
 class DeepConvNet:
