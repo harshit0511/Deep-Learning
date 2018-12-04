@@ -1,4 +1,4 @@
-# Effective TensorFlow
+# Effective TensorFlow (forked from vahidk)
 
 Table of Contents
 =================
@@ -1421,11 +1421,11 @@ def leaky_relu(tensor, alpha=0.1):
 
 ## Batch normalization <a name="batch_norm"></a>
 ```python
-def batch_normalization(tensor, training=False, epsilon=0.001, momentum=0.9, 
+def batch_normalization(tensor, training=False, epsilon=0.001, momentum=0.9,
                         fused_batch_norm=False, name=None):
   """Performs batch normalization on given 4-D tensor.
-  
-  The features are assumed to be in NHWC format. Noe that you need to 
+
+  The features are assumed to be in NHWC format. Noe that you need to
   run UPDATE_OPS in order for this function to perform correctly, e.g.:
 
   with tf.control_dependencies(tf.get_collection(tf.GraphKeys.UPDATE_OPS)):
@@ -1456,10 +1456,10 @@ def batch_normalization(tensor, training=False, epsilon=0.001, momentum=0.9,
         mean, variance = tf.nn.moments(tensor, axes=axes)
     else:
       mean, variance = avg_mean, avg_variance
-   
+
     if fused_batch_norm:
       tensor, mean, variance = tf.nn.fused_batch_norm(
-        tensor, scale=gamma, offset=beta, mean=mean, variance=variance, 
+        tensor, scale=gamma, offset=beta, mean=mean, variance=variance,
         epsilon=epsilon, is_training=training)
     else:
       tensor = tf.nn.batch_normalization(
@@ -1481,7 +1481,7 @@ def batch_normalization(tensor, training=False, epsilon=0.001, momentum=0.9,
 ```python
 def squeeze_and_excite(tensor, ratio=16, name=None):
   """Apply squeeze/excite on given 4-D tensor.
-  
+
   Based on: https://arxiv.org/abs/1709.01507
   """
   with tf.variable_scope(name, default_name="squeeze_and_excite"):
